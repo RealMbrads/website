@@ -1,96 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>How to Connect</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #fefefe;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-header {
-  background-color: #333;
-  color: white;
-  padding: 1em;
-}
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-}
-main {
-  padding: 2em;
-  margin-bottom: 100px;
-}
-.server-box {
-  background: #eee;
-  margin: 20px auto;
-  padding: 1em;
-  max-width: 600px;
-  border-radius: 8px;
-}
-footer {
-  background: #333;
-  color: white;
-  padding: 1em;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How to Connect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fefefe;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1em;
+    }
+    #navbar a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    main {
+      padding: 2em;
+      margin-bottom: 100px;
+    }
+    .server-box {
+      background: #eee;
+      margin: 20px auto;
+      padding: 1em;
+      max-width: 600px;
+      border-radius: 8px;
+    }
+    footer {
+      background: #333;
+      color: white;
+      padding: 1em;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Mbrads.org</h1>
-  <div id="navbar"></div>
-</header>
+  <header>
+    <h1>Mbrads.org</h1>
+    <div id="navbar">Loading navigation...</div>
+  </header>
 
-<main>
-  <h2>How to Connect to Our Servers</h2>
+  <main>
+    <h2>How to Connect to Our Servers</h2>
 
-  <div class="server-box">
-    <h3>Minecraft Server</h3>
-    <p>IP: <strong>play.mbrads.org</strong></p>
-    <p>Port: <strong>25565</strong> (default)</p>
-    <p>Version: Java Edition</p>
-  </div>
+    <div class="server-box">
+      <h3>Minecraft Server</h3>
+      <p>IP: <strong>play.mbrads.org</strong></p>
+      <p>Port: <strong>25565</strong> (default)</p>
+      <p>Version: Java Edition</p>
+    </div>
 
-  <div class="server-box">
-    <h3>Unturned Server</h3>
-    <p>IP: <strong>play.mbrads.org</strong></p>
-    <p>Port: <strong>27015</strong> (default)</p>
-    <p>How to join: Launch Unturned → Direct Connect → Add <code>play.mbrads.org</code> on port 27015.</p>
-  </div>
+    <div class="server-box">
+      <h3>Unturned Server</h3>
+      <p>IP: <strong>play.mbrads.org</strong></p>
+      <p>Port: <strong>27015</strong> (default)</p>
+      <p>How to join: Launch Unturned → Direct Connect → Add <code>play.mbrads.org</code> on port 27015.</p>
+    </div>
 
-  <div class="server-box">
-    <h3>Terraria Server</h3>
-    <p>IP: <strong>play.mbrads.org</strong></p>
-    <p>Port: <strong>7777</strong> (default)</p>
-    <p>How to join: Launch Terraria → Click "Join via IP" → Enter your name → IP: <strong>play.mbrads.org</strong> → Port: <strong>7777</strong></p>
-    <p>Version: PC (Steam), latest supported version</p>
-  </div>
+    <div class="server-box">
+      <h3>Terraria Server</h3>
+      <p>IP: <strong>play.mbrads.org</strong></p>
+      <p>Port: <strong>7777</strong> (default)</p>
+      <p>How to join: Launch Terraria → Click "Join via IP" → Enter your name → IP: <strong>play.mbrads.org</strong> → Port: <strong>7777</strong></p>
+      <p>Version: PC (Steam), latest supported version</p>
+    </div>
 
-  <div class="server-box">
-    <h3>Website</h3>
-    <p>You’re on it! Hosted at <strong>https://mbrads.org</strong></p>
-  </div>
-</main>
+    <div class="server-box">
+      <h3>Website</h3>
+      <p>You’re on it! Hosted at <strong>https://mbrads.org</strong></p>
+    </div>
+  </main>
 
-<footer>
-&copy; 2025 Mbrads.org
-</footer>
+  <footer>
+    &copy; 2025 Mbrads.org
+  </footer>
 
-<script>
-fetch('nav.html')
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById('navbar').innerHTML = data;
-  });
-</script>
+  <script src="navbar.js"></script>
 </body>
 </html>
