@@ -3,34 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Me</title>
+  <title>About</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fdfdfd;
+    /* Basic Reset */
+    body, html {
       margin: 0;
       padding: 0;
-      text-align: center;
+      height: 100%;
+      font-family: Arial, sans-serif;
     }
+
+    /* Flexbox Layout */
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
     header {
       background-color: #333;
       color: white;
       padding: 1em;
+      text-align: center;
     }
+
     #navbar a {
       color: white;
       margin: 0 10px;
       text-decoration: none;
     }
+
     main {
+      flex-grow: 1; /* Takes up remaining space */
       padding: 2em;
+      text-align: center;
     }
+
     footer {
       background-color: #333;
       color: white;
       text-align: center;
       padding: 1em;
-      margin-top: 2em;
+      margin-top: auto; /* Pushes footer to the bottom */
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -42,8 +63,11 @@
 
   <main>
     <h2>About Me</h2>
-    <p>I'm Mbrads62, the mastermind behind this site and the servers you love.</p>
-    <p>Whether you're on Minecraft, Unturned, or just exploring the web, thanks for being here!</p>
+    <div class="about-content">
+      <p>Welcome to my website! I'm Mbrads, the creator of this site. Here, I share my passion for technology, gaming, and everything in between.</p>
+      <p>This website is a central hub for my personal projects, including game servers, blogs, and more. I also have a dedicated space for people to reach out to me directly!</p>
+      <p>Feel free to explore the site and get in touch if you have any questions or just want to say hi!</p>
+    </div>
   </main>
 
   <footer>
