@@ -1,62 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Contact Mbrads</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #fefefe;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-header {
-  background-color: #333;
-  color: white;
-  padding: 1em;
-}
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-}
-main {
-  padding: 2em;
-}
-footer {
-  background: #333;
-  color: white;
-  padding: 1em;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Mbrads</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1em;
+    }
+    #navbar a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    main {
+      padding: 2em;
+    }
+    form {
+      background: #fff;
+      padding: 1.5em;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.8em;
+      margin: 0.5em 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    button {
+      padding: 0.8em 1.5em;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover {
+      background: #444;
+    }
+    footer {
+      background: #333;
+      color: white;
+      padding: 1em;
+      margin-top: 3em;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Mbrads.org</h1>
-  <div id="navbar"></div>
-</header>
+  <header>
+    <h1>Mbrads.org</h1>
+    <div id="navbar">Loading navigation...</div>
+  </header>
 
-<main>
-  <h2>Contact the Owner</h2>
-  <p>Email: <strong>mbrads62@example.com</strong></p>
-  <p>Or join our Discord server to get in touch!</p>
-</main>
+  <main>
+    <h2>Contact Me</h2>
+    <p>If you have questions, suggestions, or just wanna say hi, fill out the form below!</p>
 
-<footer>
-&copy; 2025 Mbrads.org
-</footer>
+    <form>
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </main>
 
-<script>
-fetch('nav.html')
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById('navbar').innerHTML = data;
-  });
-</script>
+  <footer>
+    &copy; 2025 Mbrads.org
+  </footer>
+
+  <script src="navbar.js"></script>
 </body>
 </html>
