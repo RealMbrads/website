@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact Me</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background: #fefefe;
+margin: 0;
+padding: 0;
+text-align: center;
+}
+header {
+background-color: #333;
+color: white;
+padding: 1em;
+}
+nav a {
+color: white;
+margin: 0 10px;
+text-decoration: none;
+}
+main {
+padding: 2em;
+margin-bottom: 100px;
+}
+form {
+max-width: 600px;
+margin: 0 auto;
+background: #eee;
+padding: 2em;
+border-radius: 8px;
+}
+input, textarea {
+width: 100%;
+padding: 0.8em;
+margin: 0.5em 0;
+border-radius: 4px;
+border: 1px solid #ccc;
+font-size: 1em;
+}
+button {
+padding: 0.8em 2em;
+background-color: #333;
+color: white;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+footer {
+background: #333;
+color: white;
+padding: 1em;
+position: fixed;
+width: 100%;
+bottom: 0;
+left: 0;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Contact Me</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="connect.html">How to Connect</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+<main>
+<h2>Send me a message</h2>
+<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+<input type="text" name="name" placeholder="Your Name" required />
+<input type="email" name="email" placeholder="Your Email" required />
+<textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+<button type="submit">Send</button>
+</form>
+</main>
+<footer>
+&copy; 2025 Mbrads.org
+</footer>
+</body>
+</html>
