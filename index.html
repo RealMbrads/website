@@ -1,62 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Welcome to Mbrads.org</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-header {
-  background-color: #333;
-  color: white;
-  padding: 1em;
-}
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-}
-main {
-  padding: 2em;
-}
-footer {
-  background: #333;
-  color: white;
-  padding: 1em;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to Mbrads.org</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1em;
+    }
+    #navbar a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    main {
+      padding: 2em;
+    }
+    footer {
+      background: #333;
+      color: white;
+      padding: 1em;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Mbrads.org</h1>
-  <div id="navbar"></div>
-</header>
+  <header>
+    <h1>Mbrads.org</h1>
+    <div id="navbar">Loading navigation...</div>
+  </header>
 
-<main>
-  <h2>Welcome!</h2>
-  <p>This is the official homepage for Mbrads.org.</p>
-  <p>Click "How to Connect" above to get started with our servers.</p>
-</main>
+  <main>
+    <h2>Welcome!</h2>
+    <p>This is the official homepage for Mbrads.org.</p>
+    <p>Click "How to Connect" above to get started with our servers.</p>
+  </main>
 
-<footer>
-&copy; 2025 Mbrads.org
-</footer>
+  <footer>
+    &copy; 2025 Mbrads.org
+  </footer>
 
-<script>
-fetch('nav.html')
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById('navbar').innerHTML = data;
-  });
-</script>
+  <script src="navbar.js"></script>
 </body>
 </html>
