@@ -5,33 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Welcome to Mbrads.org</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
+    /* Basic Reset */
+    body, html {
       margin: 0;
       padding: 0;
-      text-align: center;
+      height: 100%;
+      font-family: Arial, sans-serif;
     }
+    
+    /* Flexbox Layout */
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
     header {
       background-color: #333;
       color: white;
       padding: 1em;
+      text-align: center;
     }
+
     #navbar a {
       color: white;
       margin: 0 10px;
       text-decoration: none;
     }
+
     main {
+      flex-grow: 1; /* Takes up remaining space */
       padding: 2em;
+      text-align: center;
     }
+
     footer {
-      background: #333;
+      background-color: #333;
       color: white;
+      text-align: center;
       padding: 1em;
-      position: relative;
-      bottom: 0;
-      width: 100%;
+      margin-top: auto; /* Pushes footer to the bottom */
     }
   </style>
 </head>
