@@ -1,65 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>About Mbrads62</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #fefefe;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-header {
-  background-color: #333;
-  color: white;
-  padding: 1em;
-}
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-}
-main {
-  padding: 2em;
-  max-width: 800px;
-  margin: auto;
-}
-footer {
-  background: #333;
-  color: white;
-  padding: 1em;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Mbrads62</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fefefe;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1em;
+    }
+    #navbar a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    main {
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+    }
+    footer {
+      background: #333;
+      color: white;
+      padding: 1em;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Mbrads.org</h1>
-  <div id="navbar"></div>
-</header>
+  <header>
+    <h1>Mbrads.org</h1>
+    <div id="navbar">Loading navigation...</div>
+  </header>
 
-<main>
-  <h2>About Me</h2>
-  <p>Hey! I'm <strong>Mbrads62</strong>, the creator and admin of Mbrads.org.</p>
-  <p>I’m passionate about tech, networking, game servers, and building cool stuff. I've created this site to host my personal projects, game servers, and more.</p>
-  <p>Whether you’re here to connect to a game server or just learn more, welcome! Check out the other pages and feel free to reach out.</p>
-</main>
+  <main>
+    <h2>About Me</h2>
+    <p>Hey! I'm <strong>Mbrads62</strong>, the creator and admin of Mbrads.org.</p>
+    <p>I love tech, game servers, and building cool stuff.</p>
+    <p>This site is home to my projects and servers — welcome aboard!</p>
+  </main>
 
-<footer>
-&copy; 2025 Mbrads.org
-</footer>
+  <footer>
+    &copy; 2025 Mbrads.org
+  </footer>
 
-<script>
-fetch('nav.html')
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById('navbar').innerHTML = data;
-  });
-</script>
+  <script src="navbar.js"></script>
 </body>
 </html>
