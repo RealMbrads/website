@@ -79,6 +79,13 @@
       font-weight: bold;
       margin-top: 1em;
     }
+
+    #error-message {
+      display: none;
+      color: red;
+      font-weight: bold;
+      margin-top: 1em;
+    }
   </style>
 </head>
 <body>
@@ -96,6 +103,7 @@
       <button type="submit">Send</button>
     </form>
     <div id="thank-you">✅ Thank you! Your message has been sent.</div>
+    <div id="error-message">❌ Something went wrong. Try again later.</div>
   </main>
 
   <footer>
@@ -107,6 +115,7 @@
     document.addEventListener("DOMContentLoaded", () => {
       const form = document.getElementById("contact-form");
       const thankYou = document.getElementById("thank-you");
+      const errorMessage = document.getElementById("error-message");
 
       form.addEventListener("submit", function(e) {
         e.preventDefault();
@@ -114,7 +123,7 @@
         const data = new FormData(form);
 
         fetch(form.action, {
-          method: form.method,
+          method: "POST",
           body: data,
           headers: {
             'Accept': 'application/json'
@@ -123,11 +132,18 @@
           if (response.ok) {
             form.reset();
             thankYou.style.display = "block";
+            errorMessage.style.display = "none";
           } else {
-            alert("Oops! Something went wrong.");
+            response.json().then(data => {
+              errorMessage.textContent = data.error || "❌ Something went wrong. Try again later.";
+              errorMessage.style.display = "block";
+              thankYou.style.display = "none";
+            });
           }
         }).catch(error => {
-          alert("Oops! There was an error submitting the form.");
+          errorMessage.textContent = "❌ There was a network error. Please try again.";
+          errorMessage.style.display = "block";
+          thankYou.style.display = "none";
         });
       });
     });
