@@ -96,7 +96,7 @@
 
   <main>
     <h2>Contact Me</h2>
-    <form id="contact-form" action="https://formspree.io/f/xdkebwz" method="POST">
+    <form id="contact-form" action="https://formspree.io/f/xdkebwzn" method="POST">
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="email" name="email" placeholder="Your Email" required />
       <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
@@ -134,14 +134,12 @@
             thankYou.style.display = "block";
             errorMessage.style.display = "none";
           } else {
-            response.json().then(data => {
-              errorMessage.textContent = data.error || "❌ Something went wrong. Try again later.";
-              errorMessage.style.display = "block";
-              thankYou.style.display = "none";
-            });
+            errorMessage.textContent = "❌ Something went wrong. Try again later.";
+            errorMessage.style.display = "block";
+            thankYou.style.display = "none";
           }
-        }).catch(error => {
-          errorMessage.textContent = "❌ There was a network error. Please try again.";
+        }).catch(() => {
+          errorMessage.textContent = "❌ Network error. Please try again.";
           errorMessage.style.display = "block";
           thankYou.style.display = "none";
         });
@@ -150,3 +148,4 @@
   </script>
 </body>
 </html>
+
