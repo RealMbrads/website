@@ -5,21 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>How to Connect</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fefefe;
+    /* Basic Reset */
+    body, html {
       margin: 0;
       padding: 0;
-      text-align: center;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Flexbox Layout */
+    body {
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      height: 100%;
     }
 
     header {
       background-color: #333;
       color: white;
       padding: 1em;
+      text-align: center;
     }
 
     #navbar a {
@@ -29,8 +34,9 @@
     }
 
     main {
-      padding: 2em;
       flex-grow: 1;
+      padding: 2em;
+      text-align: center;
     }
 
     .server-box {
@@ -42,11 +48,11 @@
     }
 
     footer {
-      background: #333;
+      background-color: #333;
       color: white;
-      padding: 1em;
       text-align: center;
-      margin-top: auto; /* Pushes footer to the bottom */
+      padding: 1em;
+      margin-top: auto;
     }
   </style>
 </head>
