@@ -34,7 +34,7 @@
     }
 
     main {
-      flex-grow: 1; /* Takes up remaining space */
+      flex-grow: 1;
       padding: 2em;
       text-align: center;
     }
@@ -44,9 +44,9 @@
       color: white;
       text-align: center;
       padding: 1em;
-      margin-top: auto; /* Pushes footer to the bottom */
+      margin-top: auto;
     }
-    
+
     form {
       display: flex;
       flex-direction: column;
@@ -84,10 +84,10 @@
 
   <main>
     <h2>Contact Me</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea rows="5" placeholder="Your Message" required></textarea>
+    <form action="https://formspree.io/f/xdkebwz" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
       <button type="submit">Send</button>
     </form>
   </main>
