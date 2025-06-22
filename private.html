@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow"> <!-- Block search engines -->
+  <title>Private Content</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .login-box {
+      background: #222;
+      padding: 2em;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 20px #000;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      border: none;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1em;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+    .content {
+      display: none; /* Hidden until password is entered */
+      padding: 20px;
+    }
+    .video-container {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="login" class="login-box">
+    <h2>Restricted Access</h2>
+    <p>This content is password protected.</p>
+    <input type="password" id="password" placeholder="Enter password" autocomplete="off">
+    <button onclick="checkPassword()">Submit</button>
+    <p id="error" class="error"></p>
+  </div>
+
+  <div id="content" class="content">
+    <h2>Private Content</h2>
+    
+    <div class="video-container">
+      <iframe width="560" height="315" src="https://www.pornslash.com/embed/PEmwGzeDrmw" 
+              title="Pornslash video player" frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+    </div>
+    
+    <div class="video-container">
+      <iframe width="560" height="315" src="https://www.pornslash.com/embed/oQjZ3lMlGx9" 
+              title="Pornslash video player" frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }
+
+    async function checkPassword() {
+      const password = document.getElementById("password").value;
+      const errorElement = document.getElementById("error");
+      
+      try {
+        const inputHash = await sha256(password);
+        const correctHash = "a3f5d7de9c84a0ef5e8e2957a6d4b1c3e8f6a2d1c7b4e5a9f3d8c2b1e6f5a4"; // SHA-256 of "7GrJn297twn6wr0ADNc6"
+        
+        if (inputHash === correctHash) {
+          document.getElementById("login").style.display = "none";
+          document.getElementById("content").style.display = "block";
+        } else {
+          errorElement.textContent = "Incorrect password!";
+        }
+      } catch (error) {
+        errorElement.textContent = "Error verifying password. Please try again.";
+        console.error(error);
+      }
+    }
+
+    // Allow pressing Enter to submit
+    document.getElementById("password").addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        checkPassword();
+      }
+    });
+  </script>
+</body>
+</html>
