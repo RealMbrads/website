@@ -33,6 +33,10 @@
       text-decoration: none;
     }
 
+    #navbar a:hover {
+      text-decoration: underline;
+    }
+
     main {
       flex-grow: 1;
       padding: 2em;
@@ -87,7 +91,12 @@
 <body>
   <header>
     <h1>Mbrads.org</h1>
-    <div id="navbar">Loading nav...</div>
+    <div id="navbar">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/connect">Connect</a>
+      <a href="/projects">Projects</a>
+    </div>
   </header>
 
   <main>
@@ -121,11 +130,8 @@
       });
 
       async function sha256(message) {
-        // Encode as UTF-8
         const msgBuffer = new TextEncoder().encode(message);
-        // Hash the message
         const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        // Convert to hex string
         const hashArray = Array.from(new Uint8Array(hashBuffer));
         const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         return hashHex;
