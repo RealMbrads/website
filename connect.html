@@ -54,16 +54,16 @@
   </div>
 
   <script>
-    function check() {
+    async function check() {
       const input = document.getElementById("password").value;
-      sha256(input).then((hashed) => {
-        const expected = "b65403b06faea1df0e2f182c10f5363c4bfe574384d1555b6b1e72010ddcfb82"; // Hash for "secure1234"
-        if (hashed === expected) {
-          window.location.href = "connect-unlocked.html";
-        } else {
-          document.getElementById("error").innerText = "Incorrect password.";
-        }
-      });
+      const hashed = await sha256(input);
+      const expected = "b65403b06faea1df0e2f182c10f5363c4bfe574384d1555b6b1e72010ddcfb82"; // secure1234
+
+      if (hashed === expected) {
+        window.location.href = "connect-unlocked.html";
+      } else {
+        document.getElementById("error").innerText = "Incorrect password.";
+      }
     }
 
     function sha256(str) {
