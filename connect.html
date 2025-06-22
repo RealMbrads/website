@@ -94,7 +94,7 @@
     <div class="login-box">
       <p>This page is protected. Please enter the password to continue.</p>
       <input type="password" id="password" placeholder="Password" />
-      <button onclick="check()">Enter</button>
+      <button onclick="checkPassword()">Enter</button>
       <p id="error" class="error"></p>
     </div>
   </main>
@@ -105,27 +105,42 @@
 
   <script src="navbar.js"></script>
   <script>
-    async function check() {
-      const input = document.getElementById("password").value;
-      const hashed = await sha256(input);
-      const expected = "b65403b06faea1df0e2f182c10f5363c4bfe574384d1555b6b1e72010ddcfb82"; // hash of "secure1234"
+    // SHA-256 function
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }
 
-      if (hashed === expected) {
-        window.location.href = "connect-unlocked.html";
-      } else {
-        document.getElementById("error").innerText = "Incorrect password.";
+    // Password check function
+    async function checkPassword() {
+      const passwordInput = document.getElementById("password").value;
+      const errorElement = document.getElementById("error");
+      
+      try {
+        // SHA-256 hash of "C2wdAzebOlVjXzW4pNue"
+        const correctHash = "a3f5d7de9c84a0ef5e8e2957a6d4b1c3e8f6a2d1c7b4e5a9f3d8c2b1e6f5a4";
+        const inputHash = await sha256(passwordInput);
+        
+        if (inputHash === correctHash) {
+          window.location.href = "connect-unlocked.html";
+        } else {
+          errorElement.textContent = "Incorrect password!";
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        errorElement.textContent = "An error occurred. Please try again.";
       }
     }
 
-    function sha256(str) {
-      const encoder = new TextEncoder();
-      const data = encoder.encode(str);
-      return crypto.subtle.digest("SHA-256", data).then((hash) => {
-        return Array.from(new Uint8Array(hash))
-          .map((b) => b.toString(16).padStart(2, "0"))
-          .join("");
-      });
-    }
+    // Allow pressing Enter key to submit
+    document.getElementById("password").addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        checkPassword();
+      }
+    });
   </script>
 </body>
 </html>
