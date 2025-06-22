@@ -1,47 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- [Previous head content remains the same] -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Protected Page</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background-color: #111;
+      color: white;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    #navbar a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 2em;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: auto;
+    }
+
+    .login-box {
+      background: #222;
+      padding: 2em;
+      border-radius: 8px;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      box-shadow: 0 0 20px #000;
+    }
+
+    input {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #4CAF50;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 1em;
+      width: 100%;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <!-- [Previous body content remains the same until the script] -->
+  <header>
+    <h1>Mbrads.org</h1>
+    <div id="navbar">Loading nav...</div>
+  </header>
+
+  <main>
+    <h2>Password Required</h2>
+    <div class="login-box">
+      <p>This page is protected. Please enter the password to continue.</p>
+      <input type="password" id="password" placeholder="Password" autocomplete="off" />
+      <button id="submit-btn">Enter</button>
+      <p id="error" class="error"></p>
+    </div>
+  </main>
+
+  <footer>
+    2025 Mbrads.org
+  </footer>
 
   <script>
-    // SHA-256 function
-    async function sha256(message) {
-      const msgBuffer = new TextEncoder().encode(message);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-      return hashHex;
-    }
-
-    async function checkPassword() {
-      const passwordInput = document.getElementById("password").value;
+    document.addEventListener('DOMContentLoaded', function() {
+      const passwordInput = document.getElementById("password");
+      const submitBtn = document.getElementById("submit-btn");
       const errorElement = document.getElementById("error");
-      
-      try {
-        // Calculate the correct hash in real-time to ensure accuracy
-        const correctHash = await sha256("C2wdAzebOlVjXzW4pNue");
-        const inputHash = await sha256(passwordInput);
-        
-        console.log("Input hash:", inputHash);
-        console.log("Correct hash:", correctHash);
-        
-        if (inputHash === correctHash) {
-          window.location.href = "connect-unlocked.html";
-        } else {
-          errorElement.textContent = "Incorrect password!";
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        errorElement.textContent = "An error occurred. Please try again.";
-      }
-    }
 
-    document.getElementById("password").addEventListener("keyup", function(event) {
-      if (event.key === "Enter") {
-        checkPassword();
+      // Handle button click
+      submitBtn.addEventListener('click', checkPassword);
+
+      // Handle Enter key
+      passwordInput.addEventListener('keyup', function(event) {
+        if (event.key === "Enter") {
+          checkPassword();
+        }
+      });
+
+      async function sha256(message) {
+        // Encode as UTF-8
+        const msgBuffer = new TextEncoder().encode(message);
+        // Hash the message
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        // Convert to hex string
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+      }
+
+      async function checkPassword() {
+        try {
+          errorElement.textContent = "";
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Verifying...";
+          
+          const inputHash = await sha256(passwordInput.value);
+          const correctHash = await sha256("C2wdAzebOlVjXzW4pNue");
+
+          if (inputHash === correctHash) {
+            window.location.href = "connect-unlocked.html";
+          } else {
+            errorElement.textContent = "Incorrect password!";
+            passwordInput.value = "";
+            passwordInput.focus();
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          errorElement.textContent = "An error occurred. Please try again.";
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Enter";
+        }
       }
     });
   </script>
