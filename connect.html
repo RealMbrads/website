@@ -33,10 +33,6 @@
       text-decoration: none;
     }
 
-    #navbar a:hover {
-      text-decoration: underline;
-    }
-
     main {
       flex-grow: 1;
       padding: 2em;
@@ -91,12 +87,7 @@
 <body>
   <header>
     <h1>Mbrads.org</h1>
-    <div id="navbar">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/connect">Connect</a>
-      <a href="/projects">Projects</a>
-    </div>
+    <div id="navbar">Loading nav...</div>
   </header>
 
   <main>
@@ -113,6 +104,10 @@
     2025 Mbrads.org
   </footer>
 
+  <!-- Restored navbar.js reference -->
+  <script src="navbar.js"></script>
+  
+  <!-- Password protection script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const passwordInput = document.getElementById("password");
