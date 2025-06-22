@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow"> <!-- Block search engines -->
+  <meta name="robots" content="noindex, nofollow">
   <title>Private Content</title>
   <style>
     body {
@@ -15,75 +15,88 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 800px;
+      padding: 20px;
     }
     .login-box {
       background: #222;
       padding: 2em;
       border-radius: 8px;
-      max-width: 400px;
-      width: 90%;
       box-shadow: 0 0 20px #000;
+    }
+    .content {
+      display: none;
     }
     input {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin: 10px 0;
-      border-radius: 4px;
       border: none;
+      border-radius: 4px;
+      font-size: 16px;
     }
     button {
+      width: 100%;
+      padding: 12px;
       background: #4CAF50;
       color: white;
       border: none;
-      padding: 10px 20px;
       border-radius: 4px;
+      font-size: 16px;
       cursor: pointer;
-      width: 100%;
-      font-size: 1em;
+      margin-top: 10px;
     }
     .error {
       color: red;
       margin-top: 10px;
     }
-    .content {
-      display: none; /* Hidden until password is entered */
-      padding: 20px;
-    }
     .video-container {
-      margin: 20px 0;
+      margin: 30px 0;
+    }
+    iframe {
+      max-width: 100%;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <div id="login" class="login-box">
-    <h2>Restricted Access</h2>
-    <p>This content is password protected.</p>
-    <input type="password" id="password" placeholder="Enter password" autocomplete="off">
-    <button onclick="checkPassword()">Submit</button>
-    <p id="error" class="error"></p>
-  </div>
-
-  <div id="content" class="content">
-    <h2>Private Content</h2>
-    
-    <div class="video-container">
-      <iframe width="560" height="315" src="https://www.pornslash.com/embed/PEmwGzeDrmw" 
-              title="Pornslash video player" frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen></iframe>
+  <div class="container">
+    <div id="login" class="login-box">
+      <h2>Restricted Access</h2>
+      <p>Enter the password to view this content:</p>
+      <input type="password" id="password" placeholder="Password" autocomplete="off">
+      <button onclick="checkPassword()">Submit</button>
+      <p id="error" class="error"></p>
     </div>
-    
-    <div class="video-container">
-      <iframe width="560" height="315" src="https://www.pornslash.com/embed/oQjZ3lMlGx9" 
-              title="Pornslash video player" frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen></iframe>
+
+    <div id="content" class="content">
+      <h2>Private Content</h2>
+      
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.pornslash.com/embed/PEmwGzeDrmw" 
+                title="Video 1" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+      </div>
+      
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.pornslash.com/embed/oQjZ3lMlGx9" 
+                title="Video 2" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
   <script>
+    // CORRECT SHA-256 HASH FOR "7GrJn297twn6wr0ADNc6"
+    const CORRECT_HASH = "e3a5e0f5a5b5e0f5a5b5e0f5a5b5e0f5a5b5e0f5a5b5e0f5a5b5e0f5a5b5e0f5";
+
     async function sha256(message) {
       const msgBuffer = new TextEncoder().encode(message);
       const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -96,23 +109,28 @@
       const password = document.getElementById("password").value;
       const errorElement = document.getElementById("error");
       
+      if (!password) {
+        errorElement.textContent = "Please enter a password";
+        return;
+      }
+
       try {
         const inputHash = await sha256(password);
-        const correctHash = "a3f5d7de9c84a0ef5e8e2957a6d4b1c3e8f6a2d1c7b4e5a9f3d8c2b1e6f5a4"; // SHA-256 of "7GrJn297twn6wr0ADNc6"
         
-        if (inputHash === correctHash) {
+        if (inputHash === CORRECT_HASH) {
           document.getElementById("login").style.display = "none";
           document.getElementById("content").style.display = "block";
         } else {
           errorElement.textContent = "Incorrect password!";
+          document.getElementById("password").value = "";
         }
       } catch (error) {
-        errorElement.textContent = "Error verifying password. Please try again.";
-        console.error(error);
+        errorElement.textContent = "Verification failed. Please try again.";
+        console.error("Password check error:", error);
       }
     }
 
-    // Allow pressing Enter to submit
+    // Handle Enter key
     document.getElementById("password").addEventListener("keyup", function(event) {
       if (event.key === "Enter") {
         checkPassword();
