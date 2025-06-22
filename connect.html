@@ -1,0 +1,80 @@
+<!-- connect.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Password Protected</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-box {
+      background: #222;
+      padding: 2em;
+      border-radius: 8px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 0 20px #000;
+    }
+    input {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #4CAF50;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Enter Password</h2>
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="check()">Enter</button>
+    <p id="error" class="error"></p>
+  </div>
+
+  <script>
+    function check() {
+      const input = document.getElementById("password").value;
+      sha256(input).then((hashed) => {
+        const expected = "b65403b06faea1df0e2f182c10f5363c4bfe574384d1555b6b1e72010ddcfb82"; // Hash for "secure1234"
+        if (hashed === expected) {
+          window.location.href = "connect-unlocked.html";
+        } else {
+          document.getElementById("error").innerText = "Incorrect password.";
+        }
+      });
+    }
+
+    function sha256(str) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(str);
+      return crypto.subtle.digest("SHA-256", data).then((hash) => {
+        return Array.from(new Uint8Array(hash))
+          .map((b) => b.toString(16).padStart(2, "0"))
+          .join("");
+      });
+    }
+  </script>
+</body>
+</html>
