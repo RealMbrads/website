@@ -12,7 +12,7 @@
       height: 100%;
       font-family: Arial, sans-serif;
     }
-    
+
     /* Flexbox Layout */
     body {
       display: flex;
@@ -46,6 +46,20 @@
       padding: 1em;
       margin-top: auto; /* Pushes footer to the bottom */
     }
+
+    .watch-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .watch-button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -58,10 +72,15 @@
     <h2>Welcome!</h2>
     <p>This is the official homepage for Mbrads.org.</p>
     <p>Click "How to Connect" above to get started with our servers.</p>
+    <p>
+      <a href="https://imghost.pics/watch.php?id=I65NAY.mp4" target="_blank">
+        <button class="watch-button">Watch the Mbrads Intro</button>
+      </a>
+    </p>
   </main>
 
   <footer>
-  2025 Mbrads.org
+    2025 Mbrads.org
   </footer>
 
   <script src="navbar.js"></script>
