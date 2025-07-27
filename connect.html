@@ -6,18 +6,21 @@
   <title>How to Connect</title>
   <style>
     /* Basic Reset */
-    body, html {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
       height: 100%;
       font-family: Arial, sans-serif;
     }
 
-    /* Flexbox Layout */
     body {
       display: flex;
       flex-direction: column;
-      height: 100%;
+      min-height: 100vh;
     }
 
     header {
@@ -27,10 +30,15 @@
       text-align: center;
     }
 
-    #navbar a {
+    nav#navbar {
+      margin-top: 0.5em;
+    }
+
+    nav#navbar a {
       color: white;
       margin: 0 10px;
       text-decoration: none;
+      font-weight: bold;
     }
 
     main {
@@ -40,11 +48,12 @@
     }
 
     .server-box {
-      background: #eee;
+      background: #f2f2f2;
       margin: 20px auto;
       padding: 1em;
       max-width: 600px;
       border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     }
 
     footer {
@@ -52,14 +61,13 @@
       color: white;
       text-align: center;
       padding: 1em;
-      margin-top: auto;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Mbrads.org</h1>
-    <div id="navbar">Loading nav...</div>
+    <nav id="navbar">Loading nav...</nav>
   </header>
 
   <main>
@@ -75,7 +83,7 @@
       <h3>Unturned Server</h3>
       <p>IP: <strong>play.mbrads.org</strong></p>
       <p>Port: <strong>27015</strong></p>
-      <p>How to join: Direct Connect → Host: play.mbrads.org Port:27015</p>
+      <p>How to join: Direct Connect → Host: play.mbrads.org Port: 27015</p>
     </div>
 
     <div class="server-box">
@@ -92,7 +100,7 @@
   </main>
 
   <footer>
-    2025 Mbrads.org
+    &copy; 2025 Mbrads.org
   </footer>
 
   <script src="navbar.js"></script>
